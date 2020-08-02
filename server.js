@@ -22,6 +22,8 @@ io.on("connection", (socket) => {
   render[socket.id] = {
     x: 30,
     y: 20,
+    fill: Math.floor((255 - 50) * Math.random()),
+    fill2: Math.floor((255 - 50) * Math.random()),
   };
   socket.emit("prerender", render);
 

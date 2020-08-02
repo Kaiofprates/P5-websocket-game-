@@ -20,13 +20,14 @@ socket.on("render", function (data) {
 });
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 500);
+  background("#212437");
 }
 
 function setPlayers(c) {
-  background(220, 300, 30);
   for (let i in c) {
-    ellipse(c[i].x, c[i].y, 5);
+    fill(c[i].fill, c[i].fill2, 200);
+    ellipse(c[i].x, c[i].y, 10);
   }
 }
 
@@ -41,12 +42,15 @@ function keyPressed() {
     socket.emit("update", players);
   }
   if (key == "s") {
-    position.y = position.y + 10;
+    players[game_id].y = players[game_id].y + 10;
+    socket.emit("update", players);
   }
   if (key == "w") {
-    position.y = position.y - 10;
+    players[game_id].y = players[game_id].y - 10;
+    socket.emit("update", players);
   }
   if (key == "a") {
-    position.x = position.x - 10;
+    players[game_id].x = players[game_id].x - 10;
+    socket.emit("update", players);
   }
 }
